@@ -1,0 +1,104 @@
+/* CandidateForm.css */
+
+form {
+    max-width: 500px;
+    margin: 48px auto;
+    padding: 48px 32px;
+    background: #eafaf1;
+    
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  input[type="text"],
+  input[type="url"],
+  input[type="email"],
+  input {
+    padding: 16px 18px;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    transition: border 0.2s;
+    outline: none;
+    background: #e6f7f7;
+     
+  }
+  
+  input:focus {
+    border: 1.5px solid #1976d2;
+    background: #f5faff;
+  }
+  
+  button[type="submit"] {
+    position: relative;
+  padding: 12px 40px;
+  background: linear-gradient(90deg, #ffb75e 0%, #ed2f6a 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px; /* Makes the button fully round */
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, filter 0.2s;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(237, 47, 106, 0.08);
+  letter-spacing: 2px;
+  outline: none;
+  }
+  
+  button[type="submit"]:hover:not(:disabled) {
+    filter: brightness(1.08);
+    box-shadow: 0 6px 24px rgba(237, 47, 106, 0.16);
+  }
+  
+  button[type="submit"]:disabled {
+    opacity: 0.7;
+  cursor: not-allowed;
+  }
+  
+  p {
+    margin: 0;
+    color: #1976d2;
+    font-size: 0.97rem;
+    text-align: center;
+  }
+  
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #fff;
+    border-top: 3px solid #ed2f6a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  p {
+    margin: 0;
+    color: #1976d2;
+    font-size: 0.97rem;
+    text-align: center;
+  }
+  .tick {
+    color: #43a047;
+    font-size: 1.5em;
+    display: inline-block;
+    animation: pop 0.3s;
+  }
+  
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  
