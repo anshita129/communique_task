@@ -4,6 +4,8 @@ import AuthPage from './AuthPage';
 import CandidateList from './CandidateList';
 import "./App.css"
 
+
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); // 'home', 'auth', 'list'
 

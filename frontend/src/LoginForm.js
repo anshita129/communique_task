@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+
 function LoginForm({ onLogin }) {
   const [form, setForm] = useState({ username: '', password: '' });
   const [loading, setLoading] = useState(false);
@@ -13,7 +16,7 @@ function LoginForm({ onLogin }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5001/login', form);
+      const res = await axios.post(`${BACKEND_URL}/login`, form);
       localStorage.setItem('token', res.data.token);
       onLogin(); // Navigate to list page
     } catch (error) {

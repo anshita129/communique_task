@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function RegisterForm({ onRegister }) {
   const [form, setForm] = useState({ username: '', password: '', email: '', communiqueCode: '' });
   const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ function RegisterForm({ onRegister }) {
 
     setLoading(true);
     try {
-      await axios.post('http://localhost:5001/register', {
+      await axios.post(`${BACKEND_URL}/register`, {
         username: form.username,
         password: form.password,
         email: form.email

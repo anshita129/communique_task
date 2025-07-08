@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "./CandidateForm.css"
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+
 function CandidateForm() {
   const [form, setForm] = useState({ name: '', rollNumber: '', googleDriveLink: '' });
   const [errors, setErrors] = useState({});
@@ -47,7 +50,7 @@ function CandidateForm() {
         roll_number: form.rollNumber,
         google_drive_link: form.googleDriveLink
       };
-      await axios.post('http://localhost:5001/api/candidates', payload);
+      await axios.post(`${BACKEND_URL}/api/candidates`, payload);
       setForm({ name: '', rollNumber: '', googleDriveLink: '' });
       const elapsed = Date.now() - start;
       setTimeout(() => {

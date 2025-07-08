@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CandidateList.css'; // Ensure your CSS includes .back-btn styling
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function CandidateList({ onBack, onLogout }) {
   const [candidates, setCandidates] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ function CandidateList({ onBack, onLogout }) {
     const fetchCandidates = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5001/api/candidates', {
+        const res = await axios.get(`${BACKEND_URL}/api/candidates`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCandidates(res.data);
@@ -29,13 +31,13 @@ function CandidateList({ onBack, onLogout }) {
         <div>
           <button
             className="export-btn"
-            onClick={() => window.open('http://localhost:5001/api/candidates/export/csv', '_blank')}
+            onClick={() => window.open(`${BACKEND_URL}/api/candidates/export/csv`, '_blank')}
           >
             Export as CSV
           </button>
           <button
             className="export-btn"
-            onClick={() => window.open('http://localhost:5001/api/candidates/export/pdf', '_blank')}
+            onClick={() => window.open(`${BACKEND_URL}/api/candidates/export/pdf`, '_blank')}
           >
             Export as PDF
           </button>
