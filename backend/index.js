@@ -172,10 +172,8 @@ app.post('/api/candidates', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-app.get("/",(req,res)=>{
-  
+app.get('/', (req,res)=>{
+  res.send("server is running");
 })
-
 
 app.listen(5001, () => console.log('Server running on port 5001'));
