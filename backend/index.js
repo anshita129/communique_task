@@ -9,7 +9,12 @@ const { neon } = require('@neondatabase/serverless');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://communique-task-frontend.vercel.app/"
+  ]
+}));
 
 // Neon connection
 const sql = neon(process.env.DATABASE_URL);
