@@ -173,5 +173,9 @@ app.post('/api/candidates', async (req, res) => {
   }
 });
 
+app.get("/",(req,res)=>{
+  
+})
+
 
 app.listen(5001, () => console.log('Server running on port 5001'));
