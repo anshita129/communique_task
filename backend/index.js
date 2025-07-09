@@ -181,6 +181,10 @@ app.post('/api/candidates', async (req, res) => {
 });
 app.get('/', (req,res)=>{
   res.send("server is running");
+    res.json({
+    databaseUrl: process.env.DATABASE_URL ? "Set" : "Not Set",
+    jwtSecret: process.env.JWT_SECRET ? "Set" : "Not Set"
+  });
 })
 
 app.listen(5001, () => console.log('Server running on port 5001'));
