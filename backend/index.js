@@ -8,15 +8,22 @@ const PDFDocument = require('pdfkit');
 const { neon } = require('@neondatabase/serverless');
 
 const app = express();
-app.use(express.json());
-app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://communique-task-frontend.vercel.app" ,
-    "https://communiqueclient.netlify.app/"
 
-  ]
-}));
+const corsOptions = {
+  origin: [
+    "https://communique-task-frontend.vercel.app",
+    "https://communiqueclient.netlify.app"
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+app.use(express.json());
 
 // Neon connection
 const sql = neon(process.env.DATABASE_URL);
