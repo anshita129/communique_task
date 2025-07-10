@@ -1,11 +1,13 @@
 html, body {
-  height: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
   margin: 0;
   padding: 0;
   background-image: url('./images/background_img2.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body {
@@ -64,7 +66,11 @@ h1 {
 
 .auth-container {
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   max-width: 1000px;
+    justify-content: center;
+  padding: 20px;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
@@ -73,8 +79,30 @@ h1 {
 }
 
 .auth-left, .auth-right {
-  flex: 1;
-  padding: 48px 32px;
+  flex: 1 1 300px; /* grow, shrink, basis */
+  min-width: 280px;
+  max-width: 400px;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+@media (max-width: 600px) {
+  .auth-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .auth-left, .auth-right {
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .back-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
 }
 
 .list-page {
@@ -95,3 +123,4 @@ h1 {
 .back-btn:hover {
   background: #5a6268;
 }
+
