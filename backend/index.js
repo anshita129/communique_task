@@ -89,25 +89,41 @@ app.get('/api/candidates/export/pdf' , async (req, res) => {
 
 // User Registration
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password)
-    return res.status(400).json({ error: 'Username and password required' });
+  const { username, password, email } = req.body;
+  if (!username || !password || !email)
+    return res.status(400).json({ error: 'Username, password, and email required' });
+
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Invalid email format' });
+  }
 
   try {
+    // Check for existing username or email
+    const existing = await sql`
+      SELECT username, email FROM users WHERE username = ${username} OR email = ${email}
+    `;
+    if (existing.length > 0) {
+      if (existing[0].username === username) {
+        return res.status(400).json({ error: 'Username already exists' });
+      }
+      if (existing[0].email === email) {
+        return res.status(400).json({ error: 'Email already exists' });
+      }
+    }
+
     const hash = await bcrypt.hash(password, 10);
     await sql`
-      INSERT INTO users (username, password_hash)
-      VALUES (${username}, ${hash})
+      INSERT INTO users (username, password_hash, email)
+      VALUES (${username}, ${hash}, ${email})
     `;
     res.status(201).json({ message: 'User registered' });
   } catch (err) {
-    if (err.message.includes('duplicate key')) {
-      res.status(400).json({ error: 'Username already exists' });
-    } else {
-      res.status(500).json({ error: err.message });
-    }
+    res.status(500).json({ error: err.message });
   }
 });
+
 
 // User Login
 app.post('/login', async (req, res) => {

@@ -15,13 +15,12 @@ function RegisterForm({ onRegister }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Check communique code before proceeding
+  
     if (form.communiqueCode !== COMMUNIQUES_CODE) {
       alert('Invalid communique code. Please enter the correct code to register.');
       return;
     }
-
+  
     setLoading(true);
     try {
       await axios.post(`${BACKEND_URL}/register`, {
@@ -29,13 +28,18 @@ function RegisterForm({ onRegister }) {
         password: form.password,
         email: form.email
       });
-      onRegister(); // Show success message or proceed
+      onRegister();
     } catch (error) {
-      alert('Registration failed!');
+      if (error.response && error.response.data && error.response.data.error) {
+        alert(error.response.data.error); // Shows "Username already exists" or "Email already exists"
+      } else {
+        alert('Registration failed!');
+      }
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
