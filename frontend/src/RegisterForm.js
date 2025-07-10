@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const COMMUNIQUES_CODE = process.env.COMMUNIQUE_CODE;
+const COMMUNIQUES_CODE = process.env.REACT_APP_COMMUNIQUE_CODE;
 
 
 function RegisterForm({ onRegister }) {
