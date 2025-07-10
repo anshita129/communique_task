@@ -11,6 +11,7 @@ const app = express();
 
 const corsOptions = {
   origin: [
+    "http://localhost:3000",
     "https://communique-task-frontend.vercel.app",
     "https://communiqueclient.netlify.app"
   ],

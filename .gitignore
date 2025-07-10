@@ -3,6 +3,8 @@ frontend/.env
 backend/node_modules/
 backend/.env
 
+.vercel
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

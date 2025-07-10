@@ -77,15 +77,6 @@ h1 {
   padding: 48px 32px;
 }
 
-.auth-left {
-  background: #f8f9fa;
-  border-right: 1px solid #e9ecef;
-}
-
-.auth-right {
-  background: #fff;
-}
-
 .list-page {
   padding: 20px;
   min-height: 100vh;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const COMMUNIQUE_CODE = process.env.COMMUNIQUE_CODE;
+
 
 function RegisterForm({ onRegister }) {
   const [form, setForm] = useState({ username: '', password: '', email: '', communiqueCode: '' });
@@ -15,7 +17,7 @@ function RegisterForm({ onRegister }) {
     e.preventDefault();
 
     // Check communique code before proceeding
-    if (form.communiqueCode !== '12345') {
+    if (form.communiqueCode !== COMMUNIQUE_CODE) {
       alert('Invalid communique code. Please enter the correct code to register.');
       return;
     }
@@ -86,6 +88,7 @@ function RegisterForm({ onRegister }) {
       />
       <input
         name="communiqueCode"
+        type="password"
         placeholder="Communique Code"
         value={form.communiqueCode}
         onChange={handleChange}
