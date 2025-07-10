@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const COMMUNIQUE_CODE = process.env.COMMUNIQUE_CODE;
+const COMMUNIQUES_CODE = process.env.COMMUNIQUE_CODE;
 
 
 function RegisterForm({ onRegister }) {
@@ -17,7 +17,7 @@ function RegisterForm({ onRegister }) {
     e.preventDefault();
 
     // Check communique code before proceeding
-    if (form.communiqueCode !== COMMUNIQUE_CODE) {
+    if (form.communiqueCode !== COMMUNIQUES_CODE) {
       alert('Invalid communique code. Please enter the correct code to register.');
       return;
     }
